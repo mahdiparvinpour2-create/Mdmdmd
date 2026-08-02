@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>رولت اروپایی | لوکس رویال دمو</title>
+<meta name="description" content="بازی دموی رولت اروپایی با منطق کامل شرط‌بندی — بدون پول واقعی.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Manrope:wght@400;600;700;800&family=Vazirmatn:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/css/site.css">
+<link rel="stylesheet" href="./assets/css/roulette-engine.css">
+</head>
+<body data-page="roulette">
+<div class="site-chrome">
+
+	<header class="site-header">
+		<a class="brand" href="./index.html">
+			<span class="chip-mark" aria-hidden="true"></span>
+			<span>لوکس رویال<small>DEMO CASINO</small></span>
+		</a>
+		<nav class="main-nav">
+			<a href="./index.html">خانه</a>
+			<a href="./index.html#games">بازی‌ها</a>
+			<a href="./roulette.html" class="active">رولت</a>
+		</nav>
+		<div class="header-actions" id="headerActions"></div>
+	</header>
+
+	<div class="game-page-head">
+		<span class="eyebrow">میز رولت اروپایی &middot; ۳۷ خانه</span>
+		<h1>گردونه رولت</h1>
+		<p>یک عدد، ردیف، ستون، دوجین یا رنگ را انتخاب کنید، مبلغ چیپ را تعیین کنید و روی «spin» بزنید. کلیک راست روی یک شرط، مبلغ آن را کم می‌کند.</p>
+	</div>
+
+	<div class="guest-banner" id="guestBanner" style="display:none">
+		<span><strong>در حال بازی مهمان هستید.</strong> موجودی شما پس از بستن صفحه ذخیره نخواهد شد.</span>
+		<div class="actions">
+			<button class="btn btn-ghost btn-sm" data-open-auth="login">ورود</button>
+			<button class="btn btn-gold btn-sm" data-open-auth="register">ثبت‌نام و ذخیره موجودی</button>
+		</div>
+	</div>
+
+	<div class="how-to-play">
+		<div class="tip"><b>۱. انتخاب چیپ</b>مقدار شرط را از میان چیپ‌های ۱، ۵، ۱۰ یا ۱۰۰ سکه‌ای انتخاب کنید.</div>
+		<div class="tip"><b>۲. قرار دادن شرط</b>روی هر خانه از میز (عدد، رنگ، ردیف یا دوجین) کلیک کنید تا شرط ثبت شود.</div>
+		<div class="tip"><b>۳. چرخش گردونه</b>پس از ثبت شرط، دکمه spin ظاهر می‌شود؛ نتیجه و برد احتمالی نمایش داده می‌شود.</div>
+	</div>
+
+	<div class="table-stage">
+		<div id="gameRoot"></div>
+	</div>
+
+	<footer class="site-footer">
+		<span>© ۲۰۲۶ لوکس رویال — یک پروژه نمایشی (دمو)</span>
+		<span class="disclaimer"><b>هشدار:</b> این یک سایت شرط‌بندی واقعی نیست. سکه‌های این بازی هیچ ارزش مالی ندارند.</span>
+	</footer>
+</div>
+
+<!-- Auth Modal (shared) -->
+<div class="modal-overlay" id="authOverlay">
+	<div class="modal" role="dialog" aria-modal="true">
+		<button class="modal-close" id="authCloseBtn" aria-label="بستن">✕</button>
+		<h2 id="authTitle">ورود</h2>
+		<p class="sub" id="authSub"></p>
+		<p class="form-msg" id="authMsg"></p>
+
+		<form id="loginForm">
+			<div class="field">
+				<label for="loginUsername">نام کاربری</label>
+				<input id="loginUsername" type="text" autocomplete="username" required>
+			</div>
+			<div class="field">
+				<label for="loginPassword">رمز عبور</label>
+				<input id="loginPassword" type="password" autocomplete="current-password" required>
+			</div>
+			<button class="btn btn-gold btn-block" type="submit">ورود</button>
+		</form>
+
+		<form id="registerForm" style="display:none">
+			<div class="field">
+				<label for="registerUsername">نام کاربری</label>
+				<input id="registerUsername" type="text" autocomplete="username" required>
+			</div>
+			<div class="field">
+				<label for="registerPassword">رمز عبور</label>
+				<input id="registerPassword" type="password" autocomplete="new-password" required>
+			</div>
+			<button class="btn btn-gold btn-block" type="submit">ثبت‌نام</button>
+		</form>
+
+		<p class="modal-switch" id="authSwitch"></p>
+	</div>
+</div>
+
+<script src="./assets/js/auth.js"></script>
+<script>
+	document.addEventListener('DOMContentLoaded', function(){
+		var user = window.DemoCasinoAuth.currentUser();
+		var banner = document.getElementById('guestBanner');
+		if(!user && banner){ banner.style.display = 'flex'; }
+	});
+</script>
+<script src="./assets/js/roulette-engine.js"></script>
+</body>
+</html>
